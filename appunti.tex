@@ -1,0 +1,72 @@
+\documentclass[a4paper, 11pt]{article}
+\usepackage[a4paper, left=3cm, bottom=4cm, right=3cm]{geometry}
+
+\RequirePackage[english]{babel}
+\RequirePackage[utf8]{inputenc}
+\RequirePackage{amsmath}
+\RequirePackage{amsfonts}
+\RequirePackage{hyperref}
+
+\newcommand{\dd}{\mathop{\mathrm{d}\!}{}}
+\newcommand{\Tr}{\mathop{\mathrm{Tr}\!}{}}
+\newcommand{\deriv}[2]{\dfrac{\dd #1}{\dd #2}}
+\newcommand{\pderiv}[2]{\dfrac{\partial #1}{\partial #2}}
+
+\bibliographystyle{alpha}
+
+\date{\today}
+\author{Bruno Bucciotti}
+\title{Quantization of Gauge systems}
+
+
+\begin{document}
+	\maketitle
+	
+	\begin{abstract}
+		\href{https://www.youtube.com/watch?v=IwInqrN_auU}{Trumpets!}
+		Seguiremo \cite{dirac} e soprattutto \cite{HT}
+		
+	\end{abstract}
+
+	\tableofcontents
+	\clearpage
+	\section{Tappeto}
+	\subsection{Introduzione}
+	Molte teorie utilizzano un numero di variabili maggiore del numero di gradi di libertà indipendenti del sistema fisico.
+	Queste teorie sono dette di gauge (non è una persona..) e le variabili fisicamente significative sono quelle invarianti sotto le cosiddette \emph{trasformazioni di gauge}. Questa ridondanza permette di rendere più manifeste alcune simmetrie. Tutte le teorie di gauge possono essere scritte come sistemi hamiltoniani vincolati, che procediamo a studiare.
+	
+	\subsection{Lagrangian}
+	Siamo familiari con $L(q,\dot{q})$, $S[q(t)] = \int L(q(t), \dot{q}(t)\, \dd t$, $\delta S=0$. Con i soliti passaggi si arriva alle equazioni di EL
+	\[ \deriv{}{t} \left( \pderiv{L}{\dot{q}^n} \right) = \pderiv{L}{q^n} \]
+	da cui
+	\[ \ddot{q}^{n'} \pderiv{^2 L}{\dot{q}^{n'}\partial\dot{q}^n} = \pderiv{L}{\dot{q}^n} - \dot{q}^{n'} \pderiv{^2 L}{q^{n'}\partial\dot{q}^n} \]
+	
+	E' chiaro che il problema è ben posto solo se il termine cinetico nella lagrangiana è invertibile, cioè
+	\[ \det\left( \pderiv{^2L}{\dot{q}^{n'}\partial\dot{q}^{n}} \right) \]
+	Questa è precisamente la proprietà che verrà meno in teorie di gauge.
+	
+	\subsection{Hamiltonian}
+	Vogliamo ora passare alla formulazione hamiltoniana. Definiamo i momenti coniugati
+	\[ p_n = \pderiv{L}{\dot{q}^{n}} \]
+	
+	La non univocità delle $\ddot{q}^n$ si trasforma in
+	\[ \delta p_n = \pderiv{p_n}{\dot{q}^{n'}} \delta \dot{q}^{n'} = M_{n n^{'}} \delta \dot{q}^{n'} \]
+	dove la matrice $M$ non è invertibile. Dunque variare le velocità fa cambiare gli impulsi, ma in modo non indipendente (non posso ricavare la variazione delle velocità nota la variazione degli impulsi). Questo si traduce nell'esistenza di vincoli fra i $p_n$
+	\[ \phi_m(q,p) = 0,\qquad m=1,\dots,M \]
+	di cui $M'$ indipendenti fra loro (questa generalità è necessaria per non dover poi ricavare esplicitamente gli $M'$ vincoli indipendenti).
+	
+	Una varietà $M'$ dimensionale in $(q,\dot{q})$ viene mappata in un punto $(q,p)$ che soddisfa questi vincoli. Per rendere invertibile la mappa saremo costretti a introdurre $M'$ coordinate per parametrizzare la varietà di partenza.
+	
+	\paragraph{Esempio}
+	Consideriamo la lagrangiana
+	\[ L = \dfrac{1}{2} (\dot{q^1}-\dot{q^{2}})^2 \]
+	\[ p_1 = \dot{q}^{1} - \dot{q}^{2} \]
+	\[ p_2 = \dot{q}^{2} - \dot{q}^{1} \]
+	allora
+	\[ \phi = p_1 + p_2 = 0 \]
+	
+	Imponiamo le \emph{regularity conditions} sui $\phi_m$. Deve sempre essere possibile separare le $\phi_m$ in $\phi_{m'},\,m'=1,\dots,M'$ 
+	
+	\newpage
+	\bibliography{bibliografia}
+\end{document}
