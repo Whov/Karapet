@@ -30,12 +30,12 @@
 
 	\tableofcontents
 	\clearpage
-	\section{Tappeto}
+	\section{Karapet}
 	\subsection{Introduzione}
 	Molte teorie utilizzano un numero di variabili maggiore del numero di gradi di libertà indipendenti del sistema fisico.
 	Queste teorie sono dette di gauge (non è una persona..) e le variabili fisicamente significative sono quelle invarianti sotto le cosiddette \emph{trasformazioni di gauge}. Questa ridondanza permette di rendere più manifeste alcune simmetrie. Tutte le teorie di gauge possono essere scritte come sistemi hamiltoniani vincolati, che procediamo a studiare.
 	
-	\subsection{Lagrangian}
+	\subsection{Lagrangian formulation}
 	Siamo familiari con $L(q,\dot{q})$, $S[q(t)] = \int L(q(t), \dot{q}(t)\, \dd t$, $\delta S=0$. Con i soliti passaggi si arriva alle equazioni di EL
 	\[ \deriv{}{t} \left( \pderiv{L}{\dot{q}^n} \right) = \pderiv{L}{q^n} \]
 	da cui
@@ -45,13 +45,13 @@
 	\[ \det\left( \pderiv{^2L}{\dot{q}^{n'}\partial\dot{q}^{n}} \right) \]
 	Questa è precisamente la proprietà che verrà meno in teorie di gauge.
 	
-	\subsection{Hamiltonian}
+	\subsection{Hamiltonian formulation}
 	Vogliamo ora passare alla formulazione hamiltoniana. Definiamo i momenti coniugati
 	\[ p_n = \pderiv{L}{\dot{q}^{n}} \]
 	
 	La non univocità delle $\ddot{q}^n$ si trasforma in
 	\[ \delta p_n = \pderiv{p_n}{\dot{q}^{n'}} \delta \dot{q}^{n'} = M_{n n^{'}} \delta \dot{q}^{n'} \]
-	dove la matrice $M$ non è invertibile. Dunque variare le velocità fa cambiare gli impulsi, ma in modo non indipendente (non posso ricavare la variazione delle velocità nota la variazione degli impulsi). Questo si traduce nell'esistenza di vincoli fra i $p_n$
+	dove la matrice $M$ non è invertibile. Dunque variare le velocità fa cambiare gli impulsi, ma in modo non indipendente (non posso ricavare la variazione delle velocità nota la variazione degli impulsi). Questo si traduce nell'esistenza di vincoli (primari) fra i $p_n$
 	\[ \phi_m(q,p) = 0,\qquad m=1,\dots,M \]
 	di cui $M'$ indipendenti fra loro (questa generalità è necessaria per non dover poi ricavare esplicitamente gli $M'$ vincoli indipendenti).
 	
@@ -65,7 +65,80 @@
 	allora
 	\[ \phi = p_1 + p_2 = 0 \]
 	
-	Imponiamo le \emph{regularity conditions} sui $\phi_m$. Deve sempre essere possibile separare le $\phi_m$ in $\phi_{m'},\,m'=1,\dots,M'$ 
+	Imponiamo le \emph{regularity conditions} sui $\phi_m$. Deve sempre essere possibile separare le $\phi_m$ in $\phi_{m'},\,m'=1,\dots,M'$ indipendenti e $\phi_{\bar{m'}},\, \bar{m'}=M'+1,\dots,M$ implicate dalle precedenti $M'$, almeno su un insieme di aperti che ricopra la varietà $2N-M'$ dimensionale data da $\phi_m=0$; la separazione può essere diversa su ciascun aperto.
+	La richiesta di indipendenza per $\phi_{m'}$ si scrive formalmente come
+	\[ \pderiv{\phi_{m'}}{(q,p)} \]
+	deve avere rango $M'$. Equivalentemente le funzioni $\phi_{m'}$ devono poter essere prese come completamento regolare del sistema di coordinate sulla varietà $2N-M'$ dimensionale data dai vincoli (in pratica $\phi_{m'}$ parametrizzano come mi allontano dal vincolo).
+	
+	\paragraph{Esempio} La superficie $p_1=0$ ha lo stesso grafico di $p_1^2=0$ o $\sqrt{p_1}=0$, ma questi due vincoli sono singolari nell'origine, perciò non soddisfano le condizioni di regolarità.
+	
+	Le condizioni di regolarità assicurano i seguenti due teoremi
+	\paragraph{Teorema 1} Qualunque funzione liscia $G$ dello spazio delle fasi che si annulla sul vincolo $\phi_m=0$ è scrivibile come
+	$G = g^m \phi_m$ per certe funzioni $g^m(q,p)$.
+	\paragraph{Teorema 2} Se $\lambda_n \delta q^n + \mu^n \delta p_n = 0$ per variazioni arbitrarie $\delta q^n$, $\delta p_n$ tangenti al vincolo, allora esistono $u^m(q,p)$ con
+	\[ \lambda_n = u^m \pderiv{\phi_m}{q^n},\qquad \mu^n = u^m \pderiv{\phi_m}{p_n} \]
+	
+	\subsubsection{Hamiltonian}
+	Sia ora attrezzati per parlare di Hamiltoniana. Definiamo
+	\[ H = \dot{q}^{n}p_n (q,\dot{q}) - L \]
+	prendendo la variazione si ha
+	\[ \delta H = \dot{q}^{n} \delta p_n + \delta \dot{q}^{n} p_n - \delta \dot{q}^{n} \pderiv{L}{\dot{q}^{n}} - \delta q^n \pderiv{L}{q^n} = \dot{q}^{n} \delta p_n - \delta q^n \pderiv{L}{q^n} \]
+	che mostra come $H$ sia funzione di $(q,p)$. Tuttavia la definizione di $H$ contiene una certa arbitrarietà, in quanto potremmo considerare una seconda hamiltoniana uguale alla prima sul vincolo (ma diversa fuori) e ottenere la stessa dinamica fisica. E' chiaro dal teorema 1 che la generica hamiltoniana si può scrivere come
+	\[ H \rightarrow H + c^m(q,p) \phi_m \]
+	
+	Detto altrimenti
+	\[ \delta H = \pderiv{H}{q^n} \delta q^n + \pderiv{H}{p_n} \delta p_n \]
+	e comparando con la precedente espressione per $\delta H$ e applicando il teorema 2, si ha
+	\[ \left( \pderiv{H}{q^n} + \pderiv{L}{q^n} \right) \delta q^n + \left( \pderiv{H}{p_n} - \dot{q}^{n} \right) \delta p_n = 0 \]
+	\[ \dot{q}^{n} = \pderiv{H}{p_n} + u^m \pderiv{\phi_m}{p_n} \]
+	\[ \dot{p}_n = -\pderiv{H}{q^n} - u^m \pderiv{\phi_m}{q^n} \]
+	In conclusione possiamo passare da $(q,\dot{q})$ a $(q,p,u)$+vincolo e viceversa, abbiamo trovato le $M'$ coordinate $u$ che ci mancavano. La trasformazione si scrive
+	\[ q^n = q^n, \qquad p_n = \pderiv{L}{\dot{q}^{n}},\qquad u^m = u^m(q,p) \]
+	mentre quella inversa è
+	\[ q^n = q^n,\qquad \dot{q}^{n} = \pderiv{H}{p_n} + u^m \pderiv{\phi_m}{p_n},\qquad \phi_m(p,q) = 0 \]
+	
+	\subsubsection{Action principle in hamiltonian form}
+	\[ \delta \int_{t_1}^{t_2} \left( \dot{q}^{n} p_n - H - u^m \phi_m \right) \dd t = 0 \]
+	con variabili $(q,p,u)$ soggette ai vincoli $\delta q(t_1) = \delta q(t_2)  = 0$. Il principio è invariante per $H\rightarrow H + c^m\phi_m$, che corrisponde a ridefinire le $u^m$. Notare che variare rispetto a $u^m$ impone i vincoli $\phi_m=0$ (moltiplicatori di Lagrange).
+	
+	Alternativamente possiamo considerare
+	\[ \delta \int_{t_1}^{t_2} \left( \dot{q}^{n} p_n - H \right) \dd t = 0 \]
+	dove abbiamo risolto i vincoli, cioè imponiamo $\phi_m=0$, $\delta \phi_m = 0$ (gauge unitaria).
+	
+	L'evoluzione di una generica funzione è
+	\[ \dot{F} = [F, H] + u^m[F, \phi_m] \]
+	$[F, G]$ il Poisson bracket fra $F$ e $G$.
+	
+	\subsection{Secondary constraints}
+	Certamente dovremo richiedere che
+	\[ \deriv{\phi_m}{t} = [\phi_m, H] + u^{m'} [\phi_m, \phi_{m'}] = 0 \]
+	che può non essere realizzata trivialmente. In tal caso si ottengono vincoli secondari (anche per loro va richiesta derivata temporale nulla) $\phi_k=0,\,k=M+1,\dots,M+K=J$ (notare che qui sono necessarie le equazioni del moto, mentre nei vincoli primari no). Nel seguito non avremo bisogno di distinguere fra {primary constraints} e {secondary constraints}. Si assumono sempre le condizioni di regolarità.
+	
+	\subsection{Weak and strong equations}
+	Introduciamo il simbolo $\approx$ per indicare che $F\approx G$ se l'uguaglianza è vera restringendosi ai vincoli. Ovviamente quindi $\phi_j=0$.
+	
+	\subsection{Restrictions on lagrange multipliers}
+	Sappiamo che
+	\[ [\phi_j, H] + u^m [\phi_j, \phi_m] \approx 0 \]
+	dove $m$ è sommato sui soli vincoli primari, $j$ invece sono tutti. Si tratta di $J$ equazioni lineari non omogenee nelle $M$ incognite $u^m$.
+	La soluzione generale si scrive come somma di una particolare $U$ e della più generale soluzione dell'omogenea associata $V$.
+	\[ u^m = U^m + V^m \]
+	l'equazione omogenea è
+	\[ V^m[\phi_j, \phi_m] = 0 \]
+	e ha $M$ soluzioni $V^m_a$. Concludendo
+	\[ u^m = U^m + v^a V_a^m \] 
+	dove $v^a$ sono arbitrari.
+	
+	\subsection{Total hamiltonian}
+	\[ \dot{F} = [F, H] + (U^m+v^aV_a^m) [F, \phi_m] \approx [F, H'] + v^a[F, \phi_a] \approx [F, H' + v^a \phi_a] = [F, H_T] \]
+	dove si è definito
+	\[ H' = H + U^m \phi_m, \qquad \phi_a = V_a^m \phi_m,\qquad H_T = H' + v^a \phi_a \]
+	
+	\subsection{First and second class constraints}
+	
+	
+	
+	\subsection{Gauge transformation}
 	
 	\newpage
 	\bibliography{bibliografia}
