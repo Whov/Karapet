@@ -133,12 +133,35 @@
 	\[ \dot{F} = [F, H] + (U^m+v^aV_a^m) [F, \phi_m] \approx [F, H'] + v^a[F, \phi_a] \approx [F, H' + v^a \phi_a] = [F, H_T] \]
 	dove si è definito
 	\[ H' = H + U^m \phi_m, \qquad \phi_a = V_a^m \phi_m,\qquad H_T = H' + v^a \phi_a \]
+	Notiamo che lo split di $H_T$ in $H'$ e $v^a\phi_a$ è arbitrario, difatti potremmo ridefinire la soluzione particolare $U^m$ e i coefficienti arbitrari $v^a$ mantenendo la stessa $H_T$.
 	
 	\subsection{First and second class constraints}
-	
-	
+	Una funzione $F$ si dice \emph{first class} se $[F, \phi_j] \approx 0,\, j=1,\dots,J$. Altrimenti si dice \emph{second class}.
+	$\phi_a=V_a^m\phi_m$ sono tutti first class, e anzi sono una base dei first class primary constraints, cioè qualunque first class primary constraint si esprime come combinazione lineare dei $\phi_a$. Anche $H'$ è first class. Il poisson bracket di due funzioni first class è anch'esso first class (identità di Jacobi).
 	
 	\subsection{Gauge transformation}
+	Abbiamo già insistito sull'arbitrarietà delle funzioni $v^a$. Consideriamo due possibili scelte al tempo $t$: $v^a$ e $\tilde{v}^a$. Al tempo $t+\delta t$ la funzione $F$ evolve in
+	\[ F(t+\delta t) = F + \delta t [F, H'+v^a\phi_a],\qquad \tilde{F}(t+\delta t) = F + \delta t [F, H'+\tilde{v}^a\phi_a] \]
+	Dunque la variazione $\delta F$ è una trasformazione non fisica, con
+	\[ \delta F = (\tilde{F}-F)(t+\delta t) = [\delta t (\tilde{v}^a - v^a)] [F, \phi_a] = \delta v^a [F, \phi_a]\]
+	In conclusione le trasformazioni generate dai $\phi_a$ non cambiano lo stato fisico del sistema, sono cioè \emph{trasformazioni di gauge}.
+	Sono indipendenti fra loro sse i $\phi_a$ sono indipendenti come vincoli.
+	
+	Postuliamo che tutti i first class constraints generino trasformazioni di gauge, altrimenti non sappiamo come quantizzare la teoria.
+	\paragraph{Esempio} teoria $L = \dfrac{1}{2} e^y \dot{x}^2$. TODO
+	
+	\subsection{Extended hamiltonian}
+	Denotiamo $\gamma$ i first class constraints, con $\chi$ i second class. Presi insieme, li indicheremo $\phi_j$.
+	Poiché anche i secondary first class constraints generano trasformazioni di gauge, dobbiamo definire l'\emph{extended hamiltonian}
+	\[ H_E = H' + u^a \gamma_a \]
+	L'evoluzione prevista da $H',H_T,H_E$ è la stessa sul vincolo, mentre differisce fuori. Possiamo dedurre la dinamica da un principio di minimo utilizzando come azione
+	\[ S_E = \int (\dot{q}^n p_n - H' - u^j \phi_j) \dd t \]
+	dove ricordiamo che $\gamma^a$ si annullano sul vincolo, perciò si scrivono come combinazione lineare dei $\phi_j$, e dove abbiamo definito $u^j$ come ($u^a$ arbitrarie)
+	\[ \gamma_a = A_a^j \phi_j,\qquad u^j = A_a^j u^a \]
+	
+	La dinamica si scrive esplicitamente come
+	\[ \dot{F} \approx [F, H_E],\qquad \phi_j \approx 0 \]
+	
 	
 	\newpage
 	\bibliography{bibliografia}
