@@ -162,6 +162,49 @@
 	La dinamica si scrive esplicitamente come
 	\[ \dot{F} \approx [F, H_E],\qquad \phi_j \approx 0 \]
 	
+	\section{Examples}
+	\subsubsection{Example 1}
+	\[ L = \dfrac{1}{2} \sum_{i=1}^{n-1} (q^i-\dot{q}^{i+1})^2 \]
+	calcoliamo gli impulsi
+	\[ \pi_1 = 0,\qquad \pi_i = \dot{q}^i-q^{i-1},\,i=2,\dots,n \]
+	e l'hamiltoniana
+	\[ H = \dfrac{1}{2} \sum_{i=2}^{n} \left(\pi_i^2 + \pi_i q^{i-1}\right) \]
+	C'è un solo vincolo primario $\phi_1 = \pi_1$, dunque l'hamiltoniana totale è
+	\[ H_T = \dfrac{1}{2} \sum_{i=2}^{n} \left(\pi_i^2 + \pi_i q^{i-1}\right) + u \pi_1 \]
+	e con essa possiamo ricavare i vincoli secondari. Imponendo $\dot{\pi_1}\approx 0$ si ricava $\pi_2 \approx 0$. Imponendo $\dot{\pi_2} \approx 0$ \dots cioè $\pi_i \approx 0\,\forall\,i$. Banalmente
+	\[ [\pi_i, \pi_j] \approx 0 \]
+	da cui si tratta di tutti vincoli di prima classe. Non ci sono gradi di libertà fisici.
+	L'hamiltoniana estesa è
+	\[ H_E = H + u^i \pi_i \]
+	
+	Si verifica che la seguente è una trasformazione di gauge
+	\[ \delta q^i = \deriv{^{n-i} \epsilon}{t^{n-i}} \]
+	e che è generata da $G = \sum \deriv{^{n-i} \epsilon}{t^{n-i}} \pi_i$. La regola generale per costruire $G$ a partire dai vincoli sarà data in seguito.
+	
+	\subsubsection{Example 2}
+	\[ q^i,\,i=1,\dots,n,\qquad L=0 \]
+	Chiaramente $\pi_i = 0$ primary first class constraints, $H=0$, $H_E = u^i \pi_i$. Le trasformazioni di gauge sono generate da $G = \sum \epsilon^i \pi_i$, $\epsilon^i$ libere. Tutti i gradi di libertà sono gauge, quindi il sistema è lo stesso di prima. Il caso precedente è riconducibile a questo mediante parziale gauge-fixing
+	\[ \epsilon^i = \deriv{\epsilon^{i+1}}{t} \]
+	
+	Notare che nei due esempi i vincoli compaiono in modo diverso (primary e secondary) nella formulazione lagrangiana, mentre in quella puramente hamiltoniana la distinzione si perde.
+	
+	\subsubsection{Example 3}
+	\[ L = -\dfrac{1}{2} \sum (q^i)^2 \]
+	si ricavano i constraint primari e l'hamiltoniana
+	\[ \pi_i = 0,\qquad H = \dfrac{1}{2} \sum (q^i)^2 \]
+	da cui
+	\[ H_T = \dfrac{1}{2} \sum (q^i)^2 + \sum u^m \pi_m \]
+	e infine i secondary constraints sono
+	\[ \dot{\pi}_i = [\pi_i, H_T] = -q^i \approx 0 \]
+	
+	Possiamo vedere anche questo come lo stesso sistema dei due esempi precedenti, dove abbiamo fissato la gauge data dai $\pi_i$ mediante i secondary constraints. Tutti i vincoli sono di seconda classe.
+	
+	Abbiamo delle restrizioni sui moltiplicatori di lagrange $u^m$. Difatti mentre $\dot{\pi}_m\approx 0$ dà i vincoli secondari,
+	\[ \dot{q}^m = [q^m, H]+ u^{m'}[q^m, \pi_{m'}] = u^{m'} \delta_{m'}^m = u^m \approx 0\]
+	Dunque $u^m \approx 0$. Notare che il sistema di equazioni si riduce in questo caso a uno omogeneo ($[q^m, H]=0$); inoltre il sistema è di $n$ equazioni ($\forall\,q^m$) in $n$ incognite ($u^m$), dunque esiste solo la soluzione banale.
+	% DOmandare a Karapet per le varie hamiltoniane. A me sembra che i vincoli secondari si trovino con H_T, dove u^m vanno arbitrariamente spezzati in U^m e V^m. Ma se lo split è arbitrario, l'extended hamiltonian è un po'maldefinita. Inoltre nell'esempio 3 qui sopra io direi che la soluzione particolare è u=0, quindi H' = H, non ci sono first class constraints, perciò H_E = H. Tuttavia a lezione abbiamo detto diverso.
+	
+	\subsubsection{Example Electromagnetism}
 	
 	\newpage
 	\bibliography{bibliografia}
