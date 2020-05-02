@@ -204,7 +204,118 @@
 	Dunque $u^m \approx 0$. Notare che il sistema di equazioni si riduce in questo caso a uno omogeneo ($[q^m, H]=0$); inoltre il sistema è di $n$ equazioni ($\forall\,q^m$) in $n$ incognite ($u^m$), dunque esiste solo la soluzione banale.
 	% DOmandare a Karapet per le varie hamiltoniane. A me sembra che i vincoli secondari si trovino con H_T, dove u^m vanno arbitrariamente spezzati in U^m e V^m. Ma se lo split è arbitrario, l'extended hamiltonian è un po'maldefinita. Inoltre nell'esempio 3 qui sopra io direi che la soluzione particolare è u=0, quindi H' = H, non ci sono first class constraints, perciò H_E = H. Tuttavia a lezione abbiamo detto diverso.
 	
-	\subsubsection{Example Electromagnetism}
+	\subsubsection{Example: Electromagnetism}
+	\[ L = \int \dd^3 x\, -\dfrac{1}{4} F_{\mu\nu}F^{\mu\nu},\qquad F_{\mu\nu} = \partial_\mu A_\nu - \partial_\nu A_\mu \]
+	dove $A_\mu$ è l'unica variabile, $F_{\mu\nu}$ è solo un placeholder. Calcoliamo gli impulsi coniugati a $A_\mu$. Metrica \emph{mostly plus}, $a$ indici spaziali.
+	\[ \pi^\mu (x) = \pderiv{L}{(\partial_0 A_\mu)} = -\dfrac{1}{2} F^{\rho\sigma} \pderiv{F_{\rho\sigma}}{(\partial_0 A_\mu)} = -\dfrac{1}{2} F^{\rho\sigma} (\delta^0_\rho\delta^\mu_\sigma - \delta^0_\sigma\delta^\mu_\rho) = F^{\mu 0} \]
+	Notiamo che $\pi^0=0$ è un vincolo primario poiché $F^{00}=0$, e che $\pi^a = F^{a0} = \partial_0 A_a - \partial_a A_0$. Calcoliamo l'hamiltoniana
+	\[ H = \int F^{a0} \partial_0 A_a + \dfrac{1}{2} F^{a0}F_{a0} + \dfrac{1}{4} F^{ab}F_{ab}\, \dd^3 x \]
+	\[ = \int \pi^a(\pi^a + \partial_a A_0) -\dfrac{1}{2} \pi^a \pi^a + \dfrac{1}{4} F^{ab} F_{ab}\, \dd^3 x \]
+	\[ = \int \mathcal{H}\, \dd^3 x,\qquad \mathcal{H} = \dfrac{1}{2} \pi^a \pi^a +\dfrac{1}{4} F^{ab}F_{ab} - A_0 \partial_a \pi^a \]
+	dove nell'ultimo passaggio abbiamo integrato per parti. Calcoliamo ora il vincolo secondario associato a $\pi^0$, 
+	ricordando che $[A_\mu(x), \pi_\nu (y)] = \eta_{\mu\nu} \delta^3(x-y)$
+	\[ \dot{\pi}^0(x) = [\pi^0(x), H] = \int \dd^3 y\, [\pi^0(x), \mathcal{H}(y)] = \int \dd^3 y\, \delta^0_0 \delta^3(x-y) \partial_a \pi^a = \partial_a \pi^a \approx 0 \]
+	Quest'ultima è la prima legge di Maxwell.
+	%ATtenzione: Karapet dice che [\pi, A] = +, mentre io avrei detto il contrario (e qui sopra ho fatto il contrario). Domandare se typo o cosa.
+	Continuiamo a cercare secondary constraints. E' più comodo studiare $f=\int \lambda(x) \partial_a \pi^a(x)\, \dd^3 x$, che si riscrive
+	\[ f=-\int \pi^a \partial_a \lambda\, \dd^3 x \]
+	Otteniamo quindi
+	\[ \dot{f} = [f, H] + u[f, \pi^0] = -\int \lambda \partial_a\partial_b F^{ab}\, \dd^3 x = 0 \]
+	Abbiamo dunque esaurito i vincoli.
+	\[ H_E = \int \left( \dfrac{1}{2} \pi^a\pi^a + \dfrac{1}{4} F^{ab}F_{ab} \right) + (u-A_0) \partial_a \pi^a + v \pi^0\, \dd^3 x \]
+	dove ora rinominiamo $u' = u-A_0$. Si trova che
+	\[ \dot{A}_0 = [A_0, H_E] = v \]
+	Possiamo in realtà risolvere il vincolo $\pi^0 = 0$ ponendo $A_0 = \pi^0 = 0$ in tutte le nostre formule, ottenendo quindi
+	\[ S_E = \int \pi^a \dot{A}_a - \dfrac{1}{2} \pi^a\pi^a -\dfrac{1}{4} F^{ab}F_{ab} + u \partial_a \pi^a\, \dd^3x \]
+	
+	\subsection{Second class constraints}
+	Siano $\phi_j$ tutti i vincoli. Definiamo la matrice antisimmetrica $C_{jj'}$ come
+	\[ C_{jj'} = [\phi_j, \phi_{j'}] \]
+	e $C_{jj'} \approx 0$ \emph{sse} non ci sono second class constraints (segue dalla definizione). Inoltre $\det C_{jj'} \approx 0$ \emph{sse} esiste almeno un first class constraint. Dimostrazione: la freccia inversa è banale, quella diretta si fa considerando $\lambda_j\neq 0$ t.c. $\lambda_j C_{jj'} = 0$ (esiste perché $\det=0$); allora $\lambda_j \phi_j$ è first class, difatti
+	\[ [\lambda_j \phi_j, \phi_{j'}] \approx \lambda_j [\phi_j, \phi_{j'}] = \lambda_j C_{jj'} \approx 0 \]
+	
+	Possiamo sempre portare $C_{jj'}$ nella forma
+	\[ C_{jj'} = \begin{pmatrix}
+	0 & 0 \\
+	0 & C_{\alpha\beta} \\
+	\end{pmatrix} \]
+	a patto di andare nella base in cui prima elenchiamo i first class constraints, d'ora in poi $\gamma_a$, e poi i second class $\chi_a$.
+	Notiamo che $C_{\alpha\beta}$ è una matrice antisimmetrica con determinante non nullo (se avesse $\det=0$ potrei azzerare una colonna con un cambio base, ma per antisimmetria avrei ridotto le dimensioni di $C_{\alpha\beta}$); ogni first class constraint è combinazione dei $\gamma$, mentre ogni second class deve essere combinazione di \emph{almeno un} $\chi$.
+	
+	Notiamo infine che lo split è preservato dai cambi base che rimescolano le $\gamma$ fra loro senza far perdere informazione, cioè
+	\[ \gamma_a \rightarrow A_a^b \gamma_b + T^{bc}_a \chi_b\chi_c,\qquad \chi_a = B_a^b \gamma_b + C_a^b \chi_b \]
+	\[ \det A \neq 0,\qquad \det C \neq 0 \]
+	Il numero di $\chi_a$ è pari per dof bosonici. Richiediamo che $\det C_{\alpha\beta} \neq 0$ su tutto $\chi_a\approx 0$, anche quando $\gamma_a \approx 0$ non è soddisfatta.
+	
+	\subsubsection{Dirac bracket}
+	Vogliamo capire come gestire i second class constraints, visto che generano trasformazioni che, per definizione, in generale mappano uno stato fisico in uno non fisico.
+	\paragraph{Esempio}
+	Supponiamo $n$ variabili $q^i$, $p_i$, con i vincoli $q^1 \approx 0$, $p_1 \approx 0$ (second class).
+	
+	Possiamo definire il Dirac bracket in modo analogo al Poisson bracket, ma escludendo il primo addendo dalla somma
+	\[ [F,G]^* = \sum_{i=2}^{n} (\dots) \]
+	Abbiamo cioè posto $\chi_a=0$ \emph{strongly}, osservando inoltre che le equazioni del moto per i restanti gradi di libertà non cambiano. Il bracket di Dirac soddisfa tutte le proprietà del bracket di Poisson (ovviamente, visto che possiamo considerare il sistema con $n\ge 2$).
+	
+	\vspace{5mm}
+	La soluzione generale è dovuta a Dirac e procede così: definiamo $C^{\alpha\beta}$ come l'inverso di $C_{\alpha\beta}$ e il bracket come
+	\[ [F,G]^* = [F, G] - [F, \chi_\alpha] C^{\alpha\beta} [\chi_\beta, G] \]
+	Dimostrazione delle proprietà del bracket di Dirac:
+	
+	per prima cosa osserviamo che data $F$ possiamo sempre costruire $F^*=F+v^\beta\chi_\beta$ con $[F^*, \chi_\alpha] \approx 0$. Difatti
+	\[ [F^*, \chi_\alpha] \approx [F, \chi_\alpha] + v^\beta [\chi_\beta, \chi_\alpha] \approx 0 \]
+	da cui
+	\[ v^\beta C_{\beta\alpha} \approx - [F, \chi_\alpha] \]
+	Invertendo $C$ si ricava
+	\[ v^\beta C_{\beta\alpha} C^{\alpha\gamma} = v^\gamma = -[F, \chi_\alpha] C^{\alpha\gamma}\rightarrow v^\beta = -C^{\alpha\beta} [F, \chi_\alpha] \]
+	da cui $[F^*, G]$ è una riscrittura debole del bracket di Dirac
+	\[ [F^*, G] \approx [F, G] + v^\beta [\chi_\beta, G] = [F, G] - [F,\chi_\alpha] C^{\alpha\beta} [\chi_\beta, G] \]
+	e infine, usando $[\chi_\beta, G^*] \approx 0$, dimostriamo che starrare $G$ non ha effetti se $F$ è già starrato
+	\[ [F^*, G^*] \approx [F, G^*] \approx [F^*, G] \]
+
+	Con queste due ultime identità diventa un facile esercizio dimostrare che il bracket di Dirac soddisfa tutte le proprietà richieste, che elenchiamo
+	\[ [F,G]^* = -[G, F]^* \]
+	\[ [F, GR]^* = [F,G]^* R + G[F,R]^* \]
+	\[ [[F,G]^*, R]^* + cyc = 0 \]
+	\[ [\chi_\alpha, F]^* = 0,\quad \forall\,F \]
+	\[ [F, G]^* \approx [F, G],\quad \mathrm{G\, first\, class,\, F\, arbitrary} \]
+	\[ [R, [F, G]^*]^* \approx [R, [F, G]^*]^*,\quad \mathrm{F,G\, first\, class,\, R\, arbitrary} \]
+	
+	Osserviamo che $H_E$, essendo first class, genera la stessa dinamica con entrambi i bracket.
+	Lavorando con il bracket di Dirac, i second class constraints diventano \emph{identità}.
+	
+	\subsubsection{Example: Proca theory}
+	\[ L = \int \dd^3 x\, \left(-\dfrac{1}{4} F_{\mu\nu}F^{\mu\nu} - \dfrac{1}{2} m^2 A_\mu A^\mu \right) \]
+	ricaviamo
+	\[ \pi^\mu = F^{\mu 0} \]
+	cioè il vincolo primario $\pi^0=0$ e $\pi^a = F^{a0}$. Ricavando la densità hamiltoniana si ha
+	\[ \mathcal{H} = \dfrac{1}{4} F^{ab}F_{ab} + \dfrac{1}{2} \pi^a\pi^a + \dfrac{1}{2} m^2 A_a^2 - \dfrac{1}{2} A_0^2 - A_0 \partial_a \pi^a \]
+	\[ H_T = H + \int u\pi^0\,\dd^3 x \]
+	Vincoli secondari
+	\[ \dot{\pi}^0 \approx \left[ \pi^0, \int -\dfrac{1}{2} m^2 A_0^2 - A_0 \partial_a \pi^a\,\dd^3 y \right] \approx m^2 A_0 + \partial_a \pi^a \approx 0 \]
+	Posto ora $f = \int \lambda \left( m^2 A_0 + \partial_a \pi^a \right)$ si ricava
+	\[ \dot{f} \approx [f,H] + \int u [f,\pi^0]\,\dd^3 x \approx m^2 \int \lambda \left(u-\partial_a\pi^a\right)\,\dd^3 x \]
+	Abbiamo perciò una condizione sul lagrange multiplier $u$, nessun nuovo vincolo secondario.
+	
+	Riassumendo i vincoli sono $\pi^0 = 0$, $m^2A_0 + \partial_a \pi^a = 0$. Il loro bracket si calcola facilmente
+	\[ [\phi_1(x), \phi_2(y)] = -m^2 \delta^3(x-y) \]
+	%E-LA-DELTA-CHE-FA-DORME?
+	\[ C_{\alpha\beta} = \begin{pmatrix}
+	0 & -m^2 \\
+	m^2 & 0 \\
+	\end{pmatrix},\qquad
+	C^{\alpha\beta} = \begin{pmatrix}
+	0 & \dfrac{1}{m^2} \\
+	-\dfrac{1}{m^2} & 0 \\
+	\end{pmatrix} \]
+	
+	Il bracket di Dirac è dato dalla formula, ed è
+	\[ [F,G]^* = [F,G] - [F,\phi_1]\dfrac{1}{m^2}[\phi_2,G] + [F,\phi_2]\dfrac{1}{m^2}[\phi_1,G] \]
+	L'hamiltoniana si può riscrivere con i vincoli risolti come identità
+	\[ H = \int \dfrac{1}{4} F^{ab}F_{ab} + \dfrac{1}{2} \pi^a\pi^a + \dfrac{1}{2} m^2 A_a^2 + \dfrac{1}{2m^2} (\partial_a \pi^a)^2\,\dd^3 x \]
+	dove le uniche variabili ora sono $A_a,\pi^a$.
+	
+	\subsection{Reducible first class and second class}
+	TODO. Vedi 1.3.4 di \cite{HT}.
 	
 	\newpage
 	\bibliography{bibliografia}
