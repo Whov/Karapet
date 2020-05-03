@@ -25,6 +25,7 @@
 	\begin{abstract}
 		\href{https://www.youtube.com/watch?v=IwInqrN_auU}{Trumpets!}
 		Seguiremo \cite{dirac} e soprattutto \cite{HT}
+		I segni sono un po'a caso quando sono ininfluenti. Sorry..
 		
 	\end{abstract}
 
@@ -162,7 +163,7 @@
 	La dinamica si scrive esplicitamente come
 	\[ \dot{F} \approx [F, H_E],\qquad \phi_j \approx 0 \]
 	
-	\section{Examples}
+	\subsection{Examples}
 	\subsubsection{Example 1}
 	\[ L = \dfrac{1}{2} \sum_{i=1}^{n-1} (q^i-\dot{q}^{i+1})^2 \]
 	calcoliamo gli impulsi
@@ -316,6 +317,67 @@
 	
 	\subsection{Reducible first class and second class}
 	TODO. Vedi 1.3.4 di \cite{HT}.
+	
+	\subsection{More on Maxwell theory}
+	L'elettrodinamica presenta la simmetria di gauge $A_\mu\rightarrow A_\mu + \partial_\mu \sigma$. La formulazione hamiltoniana tuttavia è al \emph{primo ordine}, con tempo e spazio separati. In questo linguaggio quindi la simmetria di gauge prende una forma diversa.
+	
+	Ricordiamo che ci sono due vincoli (first class): $\pi^0\approx 0$ e $\partial_a \pi^a \approx 0$. Calcoliamo la variazione di gauge indotta da ciascuno. Introduciamo la funzione di test $\lambda(x)$ e $F$ qualunque e abbiamo
+	\[ \delta F = \epsilon \left[F, \int \lambda(y) \pi^0(y)\,\dd^3y\right] = \epsilon \int \lambda(y) \dfrac{\delta F}{\delta A_0(y)}\,\dd^3 y ,\quad \delta A_0(x) = \epsilon \lambda(x),\quad \delta A_a = 0\]
+	Deduciamo che $\pi^0(x)$ genera la trasformazione di gauge infinitesima $A_0(x)\rightarrow A_0(x) + \phi(x)$. Analogamente, e integrando per parti,
+	\[ \delta F = \epsilon \left[ F, \int \lambda(y) \partial_a \pi^a(y)\, \dd^3 y \right] = -\epsilon \int \partial_a \lambda (y) \dfrac{\delta F}{\delta A_a(y)}\, \dd^3 y,\quad \delta A_0 = 0,\quad \delta A_a(x) = - \epsilon \partial_a \lambda(x) \]
+	dunque $\partial_a \pi^a$ genera le trasformazioni $A_a\rightarrow A_a + \partial_a \sigma$.
+	Possiamo quindi identificare $\phi = \partial_0 \sigma$.
+	
+	\subsection{Gauge fixation}
+	Come abbiamo visto i first class constraints generano trasformazioni di gauge, cioè mappano punti dello spazio delle fasi $(q,p)$ in altri punti $(q',p')$ corrispondenti allo stesso stato fisico. Si parla quindi di \emph{gauge orbit} per indicare l'insieme dei punti corrispondenti allo stesso stato (è un'orbita sotto l'azione del gruppo di gauge).
+	
+	Il nostro desiderio è introdurre a mano dei vincoli, non presenti di per sè nella teoria, che selezionino un punto, un rappresentante, da ogni orbita. Si parla di \emph{gauge fixing}, in quanto l'invarianza di gauge è rotta e alle variabili non fisiche è assegnato un preciso valore. Chiamiamo questi vincoli $C_b(q,p)\approx0$.
+	
+	Imponiamo due condizioni su questi vincoli
+	\begin{itemize}
+		\item Accessibilità: dato un punto $(q,p)$ deve esistere una trasformazione di gauge che mappi $(q,p)\rightarrow(q',p')$ soddisfacente $C_b\approx 0$.
+		\item Complete fixing: l'unica trasformazione di gauge che preservi $C_b\approx 0$ deve essere l'identità.
+	\end{itemize}
+	Le due condizioni insieme implicano che il numero di condizioni di gauge indipendenti deve essere uguale al numero di first class constraints indipendenti. In particolare il complete fixing si scrive come
+	\[ \delta u^a [C_b, \gamma_a] \approx 0 \rightarrow u^a = 0 \]
+	che, oltre che implicare da solo che $b\ge a$, se unito alla condizione di accessibilità implica che la matrice \emph{quadrata} $[C_b,\gamma_a]$ è invertibile: $\det [C_b,\gamma_a] \neq 0$.
+	
+	Come abbiamo visto, questa condizione ci dice che il set $\{\gamma_a,C_b\}$ è un insieme di second class constraints. Concludiamo quindi che non ci sono first class constraints rimasti, ma come potrebbero? Se ci fossero, genererebbero trasformazioni di gauge, e noi abbiamo chiesto complete gauge fixing.
+	
+	\subsubsection{Counting of degrees of freedom}
+	Sia $N_\gamma$ il numero di (ex) first class constraints, che abbiamo visto essere uguale al numero di $\{C_b\}$ (indipendenti). Sia $N_\chi$ il numero di second class constraints $\chi$. Sia $N$ il numero di gradi di libertà fisici. Sia $N_T$ il numero di variabili canoniche totali.
+	
+	Per ogni grado di libertà fisico ci sono due phase space variables indipendenti. Queste si enumerano contando quelle totali e sottraendo il numero di vincoli, che hanno origine dagli (ex) first class constraints, dal gauge fixing e dai second class constraints. In formule
+	\[ 2N = N_T - N_\gamma- N_\gamma - N_\chi \rightarrow N = \dfrac{1}{2} (N_T-N_\chi-2N_\gamma) \]
+	
+	Il conteggio è ben definito per $N$ finito e porta sempre a $N$ intero ($N_T,N_\chi$ pari, almeno per dof bosonici).
+	
+	\subsection{Continuum limit caveat}
+	Nel caso continuo, che abbiamo già affrontato in modo "informale", abbiamo scritto spesso $\int u^a(x) \gamma_a(x)\,\dd^3 x$. A quale classe appartiene $u^a(x)$? Dobbiamo certamente garantire che
+	\[ \delta F = \int u^a(x) [F,\gamma_a(x)]\,\dd^3x \]
+	sia una trasformazione di gauge.
+	
+	Non esiste risposta generale a questa domanda, che è anzi oggetto di studio. Ci limitiamo a menzionare alcune delle sottigliezze fisicamente interessanti che possono emergere. Per campi di gauge che si annullano a infinito, $u$ che tendono a un valore costante sono legati ad una carica totale: \href{https://arxiv.org/pdf/1803.10194.pdf}{Asymptotic symmetries of electromagnetism at spatial infinity}.
+	Possono esistere trasformazioni non connesse con l'identità (non scrivibili come trasformazioni infinitesime iterate): large-gauge transformations. Infine GR in 4d ha un gruppo di gauge infinito dimensionale asintotico.
+	
+	\subsubsection{Do all second class constraints arise from gauge fixation?}
+	I first class constraints diventano second class dopo il gauge fixing. E' sempre possibile vedere i second class constraints come first class dopo un opportuno gauge fixing? Sì, in modo non univoco. Facciamo due esempi.
+	\paragraph{Example 1} Consideriamo un sistema con un solo grado di libertà e con $q^1=p_1=0$ second class. Possiamo vedere $q^1=0$ come gauge fixing della simmetria data da $p_1\approx 0$, cioè $q^1\rightarrow q^1 + \epsilon$. In questa teoria si ha quindi solo $p_1\approx 0$, first class.
+	
+	In questo caso abbiamo cestinato alcuni vincoli (che abbiamo reinterpretato come gauge fixing), mentre i restanti erano first class. In generale non è possibile selezionare alcuni vincoli second class da cestinare, serve introdurre nuove variabili.
+	\paragraph{Example 2} Stesso sistema di prima, ma possiamo invece introdurre $q^2,p_2$ con
+	\[ \phi_1 = q^1+q^2 = 0 \]
+	\[ \phi_2 = p_1-p_2 = 0 \]
+	Questi vincoli sono first class e generano l'invarianza di gauge
+	\[ q^1 \rightarrow q^1 + \epsilon_2,\qquad p_1 \rightarrow p_1 - \epsilon_1 \]
+	\[ q^2 \rightarrow q^2 - \epsilon_2,\qquad p_2 \rightarrow p_2 - \epsilon_1 \]
+	Imporre $q^2=p_2=0$ ci riporta al sistema precedente.
+	
+	Sembra che questo secondo esempio sia inutile, poiché il primo esempio era lo stesso sistema fisico, ma più semplice. In realtà in questo caso abbiamo barattato due second class constraints con due first class, al prezzo di nuove variabili di gauge. Il vantaggio è il non dover introdurre il Dirac bracket, e questo rende possibile quantizzare la teoria nel modo usuale.
+	
+	La conclusione è che è sempre possibile sia fare di disfare il gauge fixing (almeno localmente, ad esempio nel caso di gauge fixing globale ci possono essere ostruzioni topologiche, dette di Gribov).
+	
+	
 	
 	\newpage
 	\bibliography{bibliografia}
