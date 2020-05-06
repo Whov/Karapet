@@ -259,7 +259,10 @@
 	
 	\vspace{5mm}
 	La soluzione generale è dovuta a Dirac e procede così: definiamo $C^{\alpha\beta}$ come l'inverso di $C_{\alpha\beta}$ e il bracket come
-	\[ [F,G]^* = [F, G] - [F, \chi_\alpha] C^{\alpha\beta} [\chi_\beta, G] \]
+	\begin{equation}
+		\label{DiracB}
+		[F,G]^* = [F, G] - [F, \chi_\alpha] C^{\alpha\beta} [\chi_\beta, G]
+	\end{equation}
 	Dimostrazione delle proprietà del bracket di Dirac:
 	
 	per prima cosa osserviamo che data $F$ possiamo sempre costruire $F^*=F+v^\beta\chi_\beta$ con $[F^*, \chi_\alpha] \approx 0$. Difatti
@@ -289,7 +292,7 @@
 	ricaviamo
 	\[ \pi^\mu = F^{\mu 0} \]
 	cioè il vincolo primario $\pi^0=0$ e $\pi^a = F^{a0}$. Ricavando la densità hamiltoniana si ha
-	\[ \mathcal{H} = \dfrac{1}{4} F^{ab}F_{ab} + \dfrac{1}{2} \pi^a\pi^a + \dfrac{1}{2} m^2 A_a^2 - \dfrac{1}{2} A_0^2 - A_0 \partial_a \pi^a \]
+	\[ \mathcal{H} = \dfrac{1}{4} F^{ab}F_{ab} + \dfrac{1}{2} \pi^a\pi^a + \dfrac{1}{2} m^2 A_a^2 - \dfrac{1}{2} m^2 A_0^2 - A_0 \partial_a \pi^a \]
 	\[ H_T = H + \int u\pi^0\,\dd^3 x \]
 	Vincoli secondari
 	\[ \dot{\pi}^0 \approx \left[ \pi^0, \int -\dfrac{1}{2} m^2 A_0^2 - A_0 \partial_a \pi^a\,\dd^3 y \right] \approx m^2 A_0 + \partial_a \pi^a \approx 0 \]
@@ -376,6 +379,122 @@
 	Sembra che questo secondo esempio sia inutile, poiché il primo esempio era lo stesso sistema fisico, ma più semplice. In realtà in questo caso abbiamo barattato due second class constraints con due first class, al prezzo di nuove variabili di gauge. Il vantaggio è il non dover introdurre il Dirac bracket, e questo rende possibile quantizzare la teoria nel modo usuale.
 	
 	La conclusione è che è sempre possibile sia fare di disfare il gauge fixing (almeno localmente, ad esempio nel caso di gauge fixing globale ci possono essere ostruzioni topologiche, dette di Gribov).
+	
+	\subsection{Geometry}
+	Riformuliamo alcuni dei risultati precedenti in termini geometrici. Questo ci consente di dispensare dalle regularity conditions fra le altre cose, in quanto andremo a descrivere la superficie stessa, senza isolarla mediante vincoli da uno spazio $\mathcal{R}^n$ più grande. (PLEASE Beppe fixa quell'aborto di $R^n$)%TODO!
+	Omettiamo alcune dimostrazioni, che si possono trovare in \cite{HT} chapter 2.
+	
+	Quanto segue è estrinsico e orrido, ma lo metto lo stesso perché ci faciliterà la transizione al linguaggio puro e superiore della geometria simplettica. Rant ended.
+	
+	\subsubsection{Introduction}
+	Data una superficie $x^\mu = x^\mu(y)$ descritta da parametri $y^i$, questa eredita una metrica dalla metrica dello spazio ambiente. Se supponiamo lo spazio ambiente Minkowski, si ha
+	\[ g_{ij} = \eta_{\mu\nu} x^\mu_{,i} x^\nu_{,j} \]
+	
+	Se siamo in phase space non abbiamo una metrica, ma solo una forma simplettica (2 forma antisimmetrica chiusa non degenere). Essa è definita dal bracket di Poisson. Se chiamiamo il set di coordinate $\{q,p\}$ nel suo complesso $\{x\}$, possiamo scrivere
+	\[ \sigma^{\mu\nu} = [x^\mu, x^\nu] \]
+	che trasforma come un tensore e in coordinate canoniche si scrive
+	\[ \sigma^{\mu\nu} = \begin{pmatrix}
+	0 & I \\
+	-I & 0 \\
+	\end{pmatrix}  \]
+	Vale l'identità di Jacobi (in ogni sistema di coordinate) $\sigma^{[\mu\nu}_{,\rho} \sigma^{\nu]\rho} = 0$ (si vede meglio pensando al bracket stesso) e $\det\sigma\neq 0$. Questa condizione permette di definire l'inversa di $\sigma^{\mu\nu}$, che indico $\sigma_{\mu\nu}$. Allora l'identità di Jacobi si riscrive come
+	\[ \sigma_{[\mu\nu,\rho]}  = 0\]
+	
+	Come prima con la metrica, anche la forma simplettica globale induce una forma simplettica su ogni superficie
+	\[ \sigma_{ij} = \sigma_{\mu\nu} \pderiv{x^\mu}{y^i} \pderiv{x^\nu}{y^j} \]
+	$\sigma_{ij}$ è chiusa (identità di Jacobi) ma in generale non è invertibile. Una analogia è con lo spazio di Minkowski, in cui la metrica indotta sul cono luce è degenere. Il rango di $\sigma_{ij}$, costante per assunto sulla superficie, è caratteristico della superficie.
+	
+	Sia $2N$ la dimensione dello spazio delle fasi globale e $2N-M$ la dimensione della sottovarietà $\Sigma$. Chiaramente $\mathrm{rk} \sigma_{ij} \le 2N-M$,	mentre con ulteriori ragionamenti (2.1.3 \cite{HT}) si arriva a
+	\[ 2N-2M \le \mathrm{rk} \sigma_{ij} \le 2N-M \]
+	
+	\paragraph{Example: only first class constraints} Supponiamo $\{\gamma_a\}_{1,\dots M}$ vincoli first class indipendenti. Definiamo i constraint vectors
+	\[ X^\mu_a = \sigma^{\mu\nu} \partial_\nu \gamma_a \]
+	che sono interessanti perché
+	\[ X^\mu_a \partial_\mu F \equiv \partial_a F = \sigma^{\mu\nu} \partial_\mu F \partial_\nu \gamma_a = [F, \gamma_a] \]
+	E' un teorema (2.2.1 \cite{HT}) che nel caso di soli vincoli first class $\mathrm{rk}\,\sigma_{ij} = 2N-2M$, cioè $\sigma$ è massimamente degenere. Viceversa se $\mathrm{rk}\,\sigma_{ij} = 2N-2M$ allora è possibile scrivere la superficie in termini di vincoli first class. Le direzioni nulle sono spannate dai $X^\mu_a$.
+	\vspace{3mm}
+	
+	Definendo la derivata di Lie $\mathcal{L}[X_a, X_b]^\lambda = X^\mu_bX^\lambda_{a,\mu} - X^\mu_aX^\lambda_{b,\mu} $ si ha $\mathcal{L}[X_a, X_b]^\lambda = [\gamma_a, \gamma_b]$ (attenzione ai segni in letteratura!). Ricondando che $[\gamma_a, \gamma_b] = C_{ab}^c\gamma_c$ per certi $C$, calcoliamo
+	\[ \mathcal{L}[X_a, X_b]^\lambda = \sigma^{\lambda\mu} (C_{ab}^c \gamma_c)_{,\mu} = C_{ab}^c X^\lambda_c + \gamma_c \sigma^{\lambda\mu} \partial_\mu C_{ab}^c \approx C_{ab}^c X^\lambda_c \]
+	Abbiamo in realtà appena verificato il criterio (Frobenius integrability condition) secondo cui i vettori $X^\lambda_c$ generano varietà $M$ dimensionali se ci restringiamo al vincolo.
+	
+	Ogni vettore $X^\mu = v^a X^\mu_a$ tangente la superficie $M$ dimensionale è annullato da $\sigma$ sul vincolo, poiché $X^\mu_a$ spannano direzioni nulle. Possiamo chiamare la superficie $M$ dimensionale \emph{null surface}. Poiché però $X^\lambda_a$ generano le trasformazioni di gauge, concludiamo che le gauge orbits coincidono con le null surfaces.
+	
+	\paragraph{Example: only second class constraints}
+	$\chi_\alpha\approx 0$. Definiamo i campi vettoriali hamiltoniani
+	\[ X^\lambda_\alpha = \sigma^{\lambda\mu} \partial_\mu \chi_\alpha \]
+	Teorema: nessuna combinazione lineare di $X^\lambda_\alpha$ è tangente a $\Sigma$. Dimostrazione: definiamo $Y^\lambda = v^\alpha X^\lambda_\alpha$. Calcolando si ha $Y^\lambda \partial_\lambda \chi_\alpha = v^\beta X^\lambda_\beta \partial_\lambda \chi_\alpha = v^\beta \sigma^{\lambda\mu} \partial_\mu \chi_\beta \partial_\lambda \chi_\alpha = v^\beta [\chi_\alpha, \chi_\beta] = v^\beta C_{\alpha\beta}$ che non si annulla se non grazie a $v$. Concludiamo che
+	\[ Y^\lambda \partial_\lambda \chi_\alpha \approx 0 \rightarrow Y^\lambda \approx 0 \]
+	e che $\sigma_{ij}$ è non degenere, cioè $\mathrm{rk} \sigma_{ij} = 2N-M $. Viceversa se $\mathrm{rk} \sigma_{ij} = 2N-M$, i vincoli sono tutti second class.
+	
+	\subsubsection{Dirac bracket}
+	Possiamo dare una definizione intrinseca anche del bracket di Dirac. Definiamo la restrizione $f(y)$ di $F$ al vincolo e abbiamo
+	\[ [f,g]^* = \pderiv{f}{y^i}\sigma^{ij}\pderiv{g}{y^j} \]
+	dove $\sigma_{ij}\sigma^{jk} = \delta^k_i$. Questa definizione di bracket è equivalente a quella già data in termini di Poisson bracket. Dimostrazione:
+	Consideriamo un sistema di coordinate $\{y^i,\chi_\alpha\}$ con $[y^i, \chi_\alpha]\approx 0$. Questo si può sempre costruire perché supponiamo che il bracket non sia zero; allora scrivo $y'^i = y^i + \lambda^{\alpha i} \chi_\alpha$
+	\[ 0 \approx [y'^i, \chi_\alpha] \approx [y^i, \chi_\alpha] - \lambda^{\beta i} [\chi_\alpha, \chi_\beta] \rightarrow C_{\alpha\beta} \lambda^{\beta i} = [y^i, \chi_\alpha] \]
+	e l'ultima equazione ha sempre soluzione perché $C_{\alpha\beta}$ è invertibile.
+	
+	In tali coordinate $\sigma^{\lambda\mu}$ e la sua inversa sono
+	\[ \sigma^{\lambda\mu} = \begin{pmatrix}
+	[y^i, y^j] & 0 \\
+	0 & C_{\alpha\beta} \\
+	\end{pmatrix},\qquad
+	\sigma_{\lambda\mu} = \begin{pmatrix}
+	\sigma_{ij} & 0 \\
+	0 & C^{\alpha\beta} \\
+	\end{pmatrix} \]
+	dove abbiamo usato che sia $\sigma^{\lambda\mu}$ che $C_{\alpha\beta}$ sono invertibili, dunque anche $[y^i, y^j]$.
+	
+	Possiamo ora osservare che l'uguaglianza vale nel caso $F,G$ coordinate $y$: considerando la definizione intrinseca
+	\[ [y^i, y^j]^* = \sigma^{kl} \partial_k y^i \partial_l y^j = \sigma^{ij} \]
+	mentre considerando la definizione vecchia \ref{DiracB}
+	\[ [y^i, y^j]^* = [y^i, y^j] - [y^i, \chi_\alpha] C^{\alpha\beta} [\chi_\beta, y^j] \approx \sigma^{\lambda\mu} \partial_\lambda y^i \partial_\mu y^j = \sigma^{ij} \]
+	
+	\noindent Estendiamo ora al caso di $F,G$ generiche. La definizione intrinseca è inalterata
+	\[ [F, G]^* = \sigma^{kl} \partial_k F \partial_l G \]
+	mentre quella estrinseca viene
+	\[ [F, G]^* = \sigma^{\lambda\mu} \partial_\lambda F \partial_\mu G - C^{\alpha\beta} [F,\chi_\alpha] [\chi_\beta, G] \approx \sigma^{ij} \partial_i F \partial_j G + C_{\alpha\beta} \partial_\alpha F \partial_\beta G - 
+	C^{\alpha\beta} \partial_\gamma F C_{\gamma\alpha} \partial_\epsilon G C_{\beta\epsilon} \]
+	gli ultimi due termini si cancellano e si riottiene la definizione intrinseca.
+	
+	\subsubsection{Hamilton equations}
+	Le equazioni di Hamilton si scrivono
+	\[ \dot{y}^i = [y^i, h(y)]^*,\qquad h(y) = H|_{\chi_\alpha=0} \]
+	
+	$\sigma_{ij}$, essendo una forma chiusa, si può scrivere come rotore di qualcosa (almeno localmente)
+	\[ \sigma_{ij} = a_{i,j} - a_{j,i} \]
+	definiamo un'azione intrinseca
+	\[ S\left[y^i(t)\right] = \int \left( a_i(y)\dot{y}^i - h(y) \right) \dd t \]
+	che è poi uguale all'azione estesa definita in precedenza una volta che risolviamo i vincoli (dimostrazione 2.3.3 \cite{HT})
+	\[ S_E = \int \left(p_n \dot{q}^n - H - u^\alpha \chi_\alpha \right) \dd t \]
+	
+	Più cura è necessaria nel caso dei first class constraints. Difatti le equazioni del moto sul vincolo non sono canoniche (il bracket $[\gamma,\gamma]$ è nullo), a meno che non si faccia un gauge fixing $C_a = 0$. Dunque
+	\[ S\left[q,p,u,\mu\right] = \int \left( p_n\dot{q}^n - H -u^a \gamma_a -\mu^a C_a \right) \dd t \]
+	$u,\mu$ impongono $\dot{\gamma}=\dot{C}=0$, che a loro volta impongono rispettivamente $\mu=0$ e $u$ gauge fissati.
+	
+	\paragraph{Example: mixed case}
+	In presenza sia di first class che di second class constraints il rango di $\sigma_{ij}$ è $2N-M-k$ dove $k$ è il numero di first class constraints. Si deve comunque fare gauge fixing per i first class constraints, per il resto tutto procede allo stesso modo.
+	
+	\subsubsection{Proca theory again}
+	\[ L = \int \dd^3 x\, -\dfrac{1}{4} F_{\mu\nu}F^{\mu\nu} + \dfrac{1}{2} m^2 A_\mu A^\mu \]
+	ricordiamo che $\pi^0$ e $\partial_a \pi^a$ sono second class constraints. Introduciamo le nuove variabili $\Phi$, $\pi$ e i vincoli
+	\[ \phi_1 = \pi^0 + \pi,\qquad \phi_2 = \partial_a \pi^a + m^2 A_0 - m^2 \Phi \]
+	con l'azione
+	\[ S = \int \dd^4 x\, \left( -\dfrac{1}{4} F_{\mu\nu} F^{\mu\nu} - \dfrac{1}{2} m^2 (A_\mu - \partial_\mu \Phi)(A^\mu - \partial^\mu \Phi) \right) \]
+	Si ha $[\phi_1, \phi_2] = 0$, cioè abbiamo solo questi due vincoli first class. Quali sono le trasformazioni di gauge indotte da questi due vincoli? Si calcola facilmente (ricordando che $F$ cambia come $[F, \phi]$) che
+	\[ \phi_1: \delta A_0 = \epsilon,\qquad \delta \Phi = \epsilon \]
+	\[ \phi_2: \delta A_i = \partial_i\lambda,\quad \delta \pi^0 = m^2\lambda,\quad 
+	\delta \pi = -m^2 \lambda \]
+	Fissando $\Phi=\pi = 0$ riotteniamo i vincoli second class della teoria di Proca. Dunque la teoria di Proca non ha invarianza di gauge, ma introducendo un campo ausiliario accompagnato da un'opportuna invarianza di gauge (Stuckelberg trick) la teoria riacquista l'invarianza della teoria di Maxwell.
+	
+	Peraltro è possibile studiare il limite non massivo della teoria di Proca scritta in questo modo. Ridefiniamo
+	\[ \Phi \rightarrow \dfrac{\Phi}{m} \]
+	e l'azione, nel limite $m^2\rightarrow 0$, diventa
+	\[ S = \int \dd^4 x\, \left( -\dfrac{1}{4} F_{\mu\nu} F^{\mu\nu} - \dfrac{1}{2} \partial_\mu \Phi \partial^\mu \Phi \right) \]
+	
+	
+	
 	
 	
 	
