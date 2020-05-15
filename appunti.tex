@@ -493,6 +493,235 @@
 	e l'azione, nel limite $m^2\rightarrow 0$, diventa
 	\[ S = \int \dd^4 x\, \left( -\dfrac{1}{4} F_{\mu\nu} F^{\mu\nu} - \dfrac{1}{2} \partial_\mu \Phi \partial^\mu \Phi \right) \]
 	
+	% Lecture 5
+	
+	\subsection{Time as a canonical variable}
+	Nell'approccio usuale, il tempo è un parametro di integrazione nell'azione. Ogni variabile dinamica ha un certo valore ad un certo tempo t.
+	
+	Introduciamo ora un formalismo in cui il tempo è semplicemente una nuova variabile canonica. Indichiamo le derivate rispetto a $\tau$ con un punto $\deriv{a}{\tau} = \dot{a}$. Introduciamo $q^0\equiv t$ e $p_0$, definiamo $q^i(\tau) = q^i(t(\tau))$, $p_i(\tau) = p_i(t(\tau))$ e l'azione parametrizzata
+	\begin{eqnarray}
+	S = \int_{\tau_1}^{\tau_2} p_0\dot{q}^0 + p_i \dot{q}^i - u^0(p_0+H)\, \dd \tau \\
+	H_E = u^0(p_0+H) \approx 0
+	\end{eqnarray}
+	
+	dove $u^0$ è un moltiplicatore di lagrange che impone $\gamma = p_0+H\approx 0$. L'equazione del moto per $p_0$ (un altro lagrange multiplier) è
+	\begin{equation*}
+	\dot{q}^0 - u^0 = 0
+	\end{equation*}
+	Sostituendo questo vincolo nell'azione, possiamo riscriverla come
+	\begin{equation*}
+	S = \int_{\tau_1}^{\tau_2} p_i \dot{q}^i - \dot{q}^0 H \, \dd \tau =
+	\int_{t_1}^{t_2}  p_i\deriv{q^i}{t} - H  \, \dd t
+	\end{equation*}
+	dove nell'ultimo step abbiamo applicato la chain rule. Diciamo che dall'azione parametrizzata abbiamo recuperato l'azione originale.
+	
+	\subsubsection{General covariance of time}
+	L'azione parametrizzata è invariante sotto $\tau \rightarrow \tau'=f(\tau)$. Diciamo che l'azione (o il formalismo) è \emph{generally covariant}; il tempo non fisico $\tau$ non è osservabile.
+	
+	In field theory general covariance significa invarianza sotto riparametrizzatione arbitrarie delle coordinate \emph{spaziotemporali}.
+	
+	\paragraph{Theorem} Ogni sistema può essere parametrizzato, cioè riscritto in un formalismo generally covariant.
+	
+	Un commento su questo ultimo punto. Sebbene ogni sistema ammetta una forma generally covariant, potrebbe essere difficile scriverlo in tal modo nella pratica. Al contrario, se un sistema \emph{è} generally covariant, potrebbe essere \emph{impossible} de-parametrizzarlo. Un esempio famoso è in general relativity, dove non è in generale possibile costruire sistemi di coordinate globali.
+	
+	\vspace{2mm}
+	In presenza di vincoli first o second class l'azione parametrizzata diventa
+	\begin{eqnarray}
+	S = \int_{\tau_1}^{\tau_2} (p_\mu \dot{q}^\mu - H_E)\, \dd \tau \\
+	H_E = u^a \gamma_a + u^\alpha \chi_\alpha
+	\end{eqnarray}
+	dove $\gamma_0 = p_0+H$.
+	
+	Un particolare vantaggio si ottiene nel riscrivere nel nuovo formalismo un sistema con vincoli dipendenti dal tempo. Questo perché normalmente questi comporterebbero derivate esplicite rispetto al tempo, non esprimibili in termini di un bracket. Questo problema è assente nel caso generally covariant.
+	
+	\subsubsection{Time reparametrization invariance}
+	L'hamiltoniana estesa del sistema è debolmente nulla, quindi sembra che non ci sia evoluzione temporale. In realtà la dinamica è una trasformazione di gauge. L'azione 
+	\begin{eqnarray}
+	S = \int_{\tau_1}^{\tau_2} (p \dot{q} - H_E)\, \dd \tau \\
+	H_E = u^a \gamma_a + u^\alpha \chi_\alpha
+	\end{eqnarray}
+	(unidimensionale!) è invariante sotto la trasformazione
+	\begin{eqnarray}
+	\delta q = \dot{q} \epsilon \\
+	\delta p = \dot{p} \epsilon \\
+	\delta u^a = \deriv{u^a \epsilon}{\tau} \\
+	\delta u^\alpha = \deriv{u^\alpha \epsilon}{\tau} \\
+	\end{eqnarray}
+	con $\epsilon(\tau_1)=\epsilon(\tau_2) = 0$. Questa trasformazione corrisponde a $\tau\rightarrow \tau - \epsilon(\tau)$. $p,q$ trasformano come scalari, $u^a,u^\alpha$ come densità scalari (cioè $u\dd \tau$ è scalare).
+	\paragraph{Generalizzazione a $d$ dimensioni} Supponiamo di essere in $d$ dimensioni e di avere una $d$ forma $A_{\mu_1\mu_2\dots\mu_d}$. La trasformazione
+	\begin{equation*}
+	x^\mu\rightarrow x^{'\mu}=x^\mu-\epsilon^\mu
+	\end{equation*}
+	porta a
+	\begin{equation*}
+	A_{\mu_1\mu_2\dots\mu_d}(x) \rightarrow A'_{\mu_1\mu_2\dots\mu_d} (x') = \left( \pderiv{x^{\nu_1}}{x^{'\mu_1}} \dots \pderiv{x^{\nu_d}}{x^{'\mu_d}} \right) A_{\nu_1\nu_2\dots\nu_d}(x)
+	\end{equation*}
+	da cui, ricordando che $\pderiv{x^{\nu}}{x^{'\mu}} = \delta^\nu_\mu + \pderiv{\epsilon^\nu}{x^\mu}$
+	\begin{equation*}
+	\delta A_{\mu_1\mu_2\dots\mu_d}(x) \equiv A'_{\mu_1\mu_2\dots\mu_d}(x) - A_{\mu_1\mu_2\dots\mu_d}(x) = \pderiv{\epsilon^{\nu_1}}{x^{\mu_1}} A_{\nu_1\mu_2\dots\mu_d} + \dots + \pderiv{\epsilon^{\nu_d}}{x^{\mu_d}} A_{\mu_1\mu_2\dots\nu_d} + \epsilon^\rho \partial_\rho A_{\mu_1\mu_2\dots\mu_d}
+	\end{equation*}
+	Consideriamo il primo addendo dell'ultima espressione. Nella somma, se $\nu_1\neq \mu_1$ allora ho due indici uguali in $A$ completamente antisimmetrico (è una $d$ forma in $d$ dimensioni). Dunque l'unico contributo è per $\nu_1=\mu_1$, da cui (estendendo agli altri addendi tranne l'ultimo)
+	\begin{equation*}
+	\delta A_{\mu_1\mu_2\dots\mu_d}(x) = (\partial_\rho\epsilon^\rho) A_{\mu_1\mu_2\dots\mu_d}(x) + \epsilon^\rho \partial_\rho A_{\mu_1\mu_2\dots\mu_d} = \partial_\rho(\epsilon^\rho A_{\mu_1\mu_2\dots\mu_d})
+	\end{equation*}
+	Ponendo $d=1$ (l'unica dimensione è $\tau$) si riottiene $\delta A(\tau) = \deriv{(A\epsilon)}{\tau}$, dove per noi $A=u^a,u^\alpha$. Le $u$, densità scalari in $d=1$, sono quindi in generale $d$ forme.
+	
+	\vspace{4mm}
+	Se $H_E\approx 0$ allora il sistema è generally covariant. E' vero il contrario? $p,q$ devono essere scalari, cosa in realtà piuttosto comune: le variabili canoniche hanno solitamente un significato geometrico, che è sufficiente.
+	
+	\noindent Questa affermazione è vera nella meccanica dei punti materiali ($d=1$). Se le variabili dinamiche dipendono dallo spaziotempo, allora la situazione è più complessa, ma non la trattiamo.
+	
+	\subsubsection{General covariance and gauge transformations}
+	Consideriamo un sistema generally covariant con $q^0$, $q^i$ e azione
+	\begin{equation*}
+	S_E = \int_{\tau_1}^{\tau_2} p_\mu\dot{q}^\mu - u^0(p_0+H)\, \dd \tau
+	\end{equation*}
+	L'hamiltoniana estesa è debolmente nulla. Facciamo però una trasformazione canonica che dipenda da $\tau$, ad esempio
+	\begin{equation*}
+	T(\tau) = t(\tau) -\tau
+	\end{equation*}
+	la nuova azione del sistema è
+	\begin{equation*}
+	S = \int_{\tau_1}^{\tau_2} p_0\dot{T} + p_i \dot{q}^i - H - \lambda(p_0+H)\, \dd \tau,\qquad \lambda = u^0-1
+	\end{equation*}
+	La nuova hamiltoniana $H+\lambda(p_0+H)$ non è debolmente nulla. Possiamo domandarci se il nuovo sistema sia generally covariant. La risposta è no, se trattiamo tutte le variabili canoniche come scalari (in tal caso l'hamiltoniana sarebbe zero). Possiamo però ricavare come trasforma $T$ ricordando come lo abbiamo definito a partire dal vecchio sistema. Si ricava (assumendo che $Id(\tau)\equiv\tau$ sia scalare) che
+	\begin{equation*}
+	\delta T(\tau) = \epsilon \dot{T} + \epsilon
+	\end{equation*}
+	cioè che $T$ trasforma come una connessione. Se assumiamo questa come legge di trasformazione, allora l'azione è invariante. E' come se il nuovo sistema avesse acquisito una invarianza di gauge a scapito della general covariance. Concludiamo che la general covariance non può essere distinta nettamente dalle altre invarianze di gauge.
+	
+	Mostriamo ora come la presenza di un generatore di gauge permetta sempre di riscrivere il sistema come generally covariant senza introdurre nuove variabili (moralmente usiamo come tempo una di quelle che erano pura gauge). I passi sono
+	\begin{enumerate}
+		\item Eseguire una trasformazione canonica in modo da azzerare l'hamiltoniana
+		\item Dichiarare tutte le variabili canoniche come scalari
+	\end{enumerate}
+	
+	\paragraph{Example: Maxwell theory}
+	Facciamo subito un esempio. Nella teoria di Maxwell il tempo è osservabile e alcune componenti di $A$ non lo sono. Potremmo operare
+	la trasformazione descritta sopra, ma sarebbe fisicamente una operazione priva di senso: nella teoria di Maxwell esistono gradi di libertà esterni il cui stato può essere considerato come un clock osservabile.
+	
+	\paragraph{Example: General relativity}
+	In relatività generale al contrario, dove l'intero universo può essere preso come sistema dinamico, non c'è una nozione naturale di fuori: ha quindi senso che la teoria sia generally covariant.
+	
+	\paragraph{Example: Free particle}
+	Facciamo invece l'esempio per una particella libera e domandiamoci cosa accade all'evoluzione dinamica delle osservabili ora che il tempo non è osservabile. In realtà il problema non sussiste. Fissiamo $t_0$ il tempo (variabile dinamica!) a cui vogliamo porre la domanda. Allora
+	\begin{equation*}
+	q_{t_0} (\tau) = q(\tau) - \dfrac{p(\tau)}{m} (t(\tau)-t_0)
+	\end{equation*}
+	è una costante del moto (moto in $\tau$), e dunque nel nostro linguaggio è un invariante di gauge, cioè un'osservabile.
+	
+	\paragraph{Gauge generator}
+	La riparametrizzazione $\tau \rightarrow \tau - \epsilon(\tau)$  può essere vista come trasformazione di gauge con generatore
+	\begin{equation*}
+	G = \epsilon^a \gamma_a,\qquad \epsilon^a = \epsilon u^a,\qquad \gamma_0 = p_0 + H
+	\end{equation*}
+	Questo mostra anche come i sistemi generally covariant sono sempre invarianti di gauge.
+	
+	\subsubsection{Relativistic massive particle}
+	Trattiamo la particella relativistica su spazio piatto con spaziotempo $d$ dimensionale.
+	\begin{equation*}
+	S = -m \int_{\tau_1}^{\tau_2} (\dot{x}^\mu \dot{x}_\mu)^{1/2}\,\dd\tau
+	\end{equation*}
+	Si calcola che
+	\begin{equation*}
+	p_\mu p^\mu = m^2
+	\end{equation*}
+	e che $H=0$. Dunque
+	\begin{eqnarray}
+	H_E = \lambda(p_\mu p^\mu -m^2) \\
+	S_E = \int_{\tau_1}^{\tau_2} p_\mu \dot{q}^\mu - \lambda(p_\mu p^\mu - m^2)\, \dd \tau
+	\end{eqnarray}
+	
+	\paragraph{Vierbein}
+	Viene lasciato come esercizio il mostrare che $S_E$ per la particella relativistica descrive lo stesso sistema descritto da
+	\begin{equation*}
+	S[x^\mu, e] = \int_{\tau_1}^{\tau_2} e^{-1} \dot{x}^\mu \dot{x}_\mu - e m^2\, \dd \tau
+	\end{equation*}
+	dove $e$ è il vierbein, $e^2 = g_{00}(\tau)$.
+	
+	\subsubsection{Chern Simons theory in 2+1d}
+	L'azione di questa teoria topologica è
+	\begin{equation*}
+	S = \dfrac{1}{2} \int A \wedge \dd A + \frac{2}{3} A\wedge A\wedge A\, \dd^3 x,\qquad A = A_\mu \dd x^\mu
+	\end{equation*}
+	dove $A_\mu$ non sono numeri, bensì
+	\begin{equation*}
+	A_\mu = A_\mu^a  T_a
+	\end{equation*}
+	dove $T_a$ sono i generatori di una qualche algebra di Lie. La lagrangiana si può riscrivere
+	\begin{equation*}
+	\mathcal{L} = \dfrac{1}{2} \epsilon^{\mu\nu\lambda} \mathrm{Tr} (A_\mu \partial_\nu A_\lambda + \frac{2}{3} A_\mu A_\nu A_\lambda) 
+	\end{equation*}
+	Notiamo la struttura molto simile alla teoria di Yang-Mills.
+	Le equazioni del moto della teoria di Chern Simons sono $F_{\mu\nu} = 0$. Posto $\epsilon^{012} = +1$, $\epsilon^{0ij} \equiv \epsilon^{ij}$, si calcola facilmente che
+	\begin{equation*}
+	\pi^0 = 0,\qquad \pi^i = \frac{1}{2} \epsilon^{ij} A_j
+	\end{equation*}
+	Questo permette di riscrivere la lagrangiana della teoria come
+	\begin{equation*}
+	\mathcal{L} = \mathrm{Tr} \left( A_0 \epsilon^{ij} \partial_i A_j - \frac{1}{2} \epsilon^{ij} A_i \dot{A}_j + \epsilon^{ij} A_0 A_i A_j \right)
+	\end{equation*}
+	
+	Ricaviamo anche l'hamiltoniana (che fine fa la traccia?)
+	\begin{equation*}
+	\mathcal{H} = \pi^i \dot{A}_i + \frac{1}{2} \epsilon^{ij} A_i \dot{A}_j - A_0 \epsilon^{ij} \partial_i A_j - \epsilon^{ij} A_0 A_i A_j
+	\end{equation*}
+	Usando il fatto che
+	\begin{equation*}
+	\epsilon^{ij} (\partial_i A_j + A_i A_j) = \epsilon^{ii} F_{ii} = F
+	\end{equation*}
+	si arriva a
+	\begin{equation*}
+	\mathcal{H} = \pi^i \dot{A}_i + \frac{1}{2} \epsilon^{ij} A_i \dot{A}_j - A_0 F = -A_0 F
+	\end{equation*}
+	da cui infine
+	\begin{equation*}
+	H_T = \lambda_0 \pi^0 + \lambda_i (\pi^i -\frac{1}{2} \epsilon^{ij} A_j) - A_0 F
+	\end{equation*}
+	\begin{equation*}
+	S_T = \int (\pi^i \dot{A}_i - H_E)\,\dd^3 x
+	\end{equation*}
+	Da questa hamiltoniana totale si ricava la dinamica
+	\begin{equation*}
+	[\pi^0, H_T] = F,\qquad [\pi^i, H_T] = -\frac{1}{2} \epsilon^{ki} \lambda_k + \epsilon^{ki} \partial_k A_0 - \epsilon^{ki} A_0 A_k
+	\end{equation*}
+	(renaming?? $S = \frac{1}{2} \int B\wedge\dd B + \frac{2}{3} B\wedge B\wedge B$)
+	
+	\subsubsection{General relativity}
+	Concludiamo il corso osservando che GR in 2+1d si può riscrivere come una teoria di Chern Simons. Le equazioni del moto sono condizioni di piattezza per una connessione $A_\mu^a$ a valori nell'algebra di Lie delle isometrie del background massimalmente simmetrico di Einstein.
+
+	Per fare degli esempi, elenchiamo possibili background e l'algebra delle loro isometrie
+	\begin{itemize}
+		\item Spazio piatto $\rightarrow$ Poincaré
+		\item AdS ($\Lambda<0$) $\rightarrow$ so(2,2)
+		\item dS ($\Lambda>0$) $\rightarrow$ so(1,3)
+	\end{itemize}
+	
+	Si ha equivalenza fra la descrizione usuale e la CS se il vierbein $e_\mu^a$ è invertibile. In assenza di tale condizione CS è più generale, ma ancora non si sa molto di questo problema.
+	
+	\paragraph{Remark finale (acasissimo)}
+	Nella quantizzazione con il path integral con il tempo come variabile canonica (sistema parametrizzato) si devono considerare anche traiettorie che vanno indietro nel tempo (anche in meccanica non relativistica).
+	
+	
+	
+	
+	
+	
+	
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
